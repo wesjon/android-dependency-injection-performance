@@ -23,7 +23,6 @@ import org.rewedigital.katana.Component
 import org.rewedigital.katana.Katana
 import org.rewedigital.katana.android.environment.AndroidEnvironmentContext
 import org.rewedigital.katana.android.environment.AndroidEnvironmentContext.Profile.SPEED
-import org.rewedigital.katana.createComponent
 import javax.inject.Inject
 
 class InjectionTest : KoinComponent {
@@ -125,11 +124,11 @@ class InjectionTest : KoinComponent {
         lateinit var component: Component
         return LibraryResult("Katana", mapOf(
             Variant.KOTLIN to runTest(
-                setup = { component = createComponent(modules = listOf(katanaKotlinModule)) },
+                setup = { component = Component(modules = listOf(katanaKotlinModule)) },
                 test = { component.injectNow<Fib8>() }
             ),
             Variant.JAVA to runTest(
-                setup = { component = createComponent(modules = listOf(katanaJavaModule)) },
+                setup = { component = Component(modules = listOf(katanaJavaModule)) },
                 test = { component.injectNow<FibonacciJava.Fib8>() }
             )
         ))
